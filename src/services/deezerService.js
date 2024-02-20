@@ -8,11 +8,24 @@ export const loginWithDeezer = (callback) => {
             console.log('Welcome! Fetching your information.... ');
             DZ.api('/user/me', function(response) {
                 console.log('Good to see you, ' + response.name + '.');
-                if (callback) callback(true, response);
             });
         } else {
             console.log('User cancelled login or did not fully authorize.');
-            if (callback) callback(false);
         }
     }, {perms: 'basic_access,email'});
+};
+
+export const getRandomTrack = async () => {
+    return new Promise((resolve, reject) => {
+        DZ.api('/chart/0/tracks', (response) => {
+            if (response.error) {
+                reject(response.error);
+            } else {
+                const tracks = response.data;
+                const randomIndex = Math.floor(Math.random() * tracks.length);
+                const randomTrack = tracks[randomIndex];
+                resolve(randomTrack);
+            }
+        });
+    });
 };
