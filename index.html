@@ -13,34 +13,7 @@
     <script src="https://e-cdn-files.dzcdn.net/js/min/dz.js"></script>
     <script>
 
-        // la config de deezer
-        DZ.init({
-            appId  : process.env.VITE_APP_DEEZER_APP_ID,
-            channelUrl : 'http://'+ process.env.VITE_APP_DEEZER_APP_DOMAIN+'/channel.html'
-        });
 
-        DZ.login(function(response) {
-            if (response.authResponse) {
-                console.log('Welcome!  Fetching your information.... ');
-                DZ.api('/user/me', function(response) {
-                    console.log('Good to see you, ' + response.name + '.');
-                });
-            } else {
-                console.log('User cancelled login or did not fully authorize.');
-            }
-        }, {perms: 'basic_access,email'});
-
-
-        // petit bout de code pour tester si ca fonctionne bien
-
-        DZ.api('/chart/0/tracks', function(response) {
-            if (response && response.data) {
-                const tracks = response.data;
-                const randomTrack = tracks[Math.floor(Math.random() * tracks.length)];
-
-                DZ.player.playTracks([randomTrack.id]);
-            }
-        });
 
     </script>
   </body>
