@@ -2,8 +2,8 @@
   <div>
     <h1>Bienvenue sur Surprise Me!</h1>
     <p>Laissez-nous vous surprendre...</p>
-    <Login v-if="!isUserLoggedIn" />
-    <button v-if="isUserLoggedIn" @click="decouvrir">Découvrir</button>
+    <Login />
+    <button @click="decouvrir">Découvrir</button>
   </div>
 </template>
 
