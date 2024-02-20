@@ -1,22 +1,26 @@
 <template>
   <div>
     <h1>Bienvenue sur Surprise Me!</h1>
-    <p>Laissez nous vous surprendre...</p>
-    <Login />
-    {if (localStorage.getItem('accessToken')) {
-      <button @click="decouvrir">Découvrir</button>
-    }}
+    <p>Laissez-nous vous surprendre...</p>
+    <Login v-if="!isUserLoggedIn" />
+    <button v-if="isUserLoggedIn" @click="decouvrir">Découvrir</button>
   </div>
 </template>
 
-<script>
+<script setup>
+import { ref, watchEffect } from 'vue';
+import { useRouter } from 'vue-router';
 import Login from '@/components/Login.vue';
-export default {
-  components: {Login},
-  methods: {
-    decouvrir() {
-      this.$router.push({ name: 'surprise' });
-    }
-  }
-};
+
+const router = useRouter();
+const isUserLoggedIn = ref(false);
+
+watchEffect(() => {
+
+
+});
+
+function decouvrir() {
+  router.push({ name: 'surprise' });
+}
 </script>

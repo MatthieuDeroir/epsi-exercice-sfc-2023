@@ -1,20 +1,18 @@
-<template>
-  <div>Connexion réussie, veuillez patienter...</div>
-</template>
-
 <script setup>
 import { onMounted } from 'vue';
+import { loginWithDeezer } from '@/services/deezerService';
 
 onMounted(() => {
-  const hash = window.location.hash.substring(1);
-  const params = new URLSearchParams(hash);
-  const accessToken = params.get('access_token');
-
-  if (accessToken) {
-    console.log('Access Token:', accessToken);
-    localStorage.setItem('accessToken', accessToken);
-  } else {
-    console.error('Erreur lors de la connexion.');
-  }
+  loginWithDeezer((error, response) => {
+    if (error) {
+      console.error('Error logging in:', error);
+    } else {
+      console.log('Logged in:', response);
+      setTimeout(() => {
+        window.opener.location.reload();
+        window.close();
+      }, 10000);
+    }
+  });
 });
 </script>
