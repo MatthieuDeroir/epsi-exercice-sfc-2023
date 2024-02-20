@@ -1,8 +1,7 @@
 export const loginWithDeezer = (callback) => {
     DZ.init({
         appId: 668883,
-        redirectUri: 'http://localhost:5173/callback',
-        channelUrl: 'http://localhost:5173/channel.html',
+        channelUrl: 'http://localhost:5173/callback',
     });
     DZ.login(function(response) {
         if (response.authResponse) {
