@@ -14,7 +14,7 @@ const router = createRouter({
     },
     {
       path: '/surprise',
-      name: 'surprime',
+      name: 'surprise',
       component: SurpriseView
     }
   ]
